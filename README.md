@@ -11,37 +11,38 @@ Any Construction Equipment company can access and adapt it to their own system o
 
 Find out more at https://www.codeofconscience.org/
 
-## Installation
+## Validation
 
-Install dependencies
-```sh
-pip3 install -r requirements.txt
-```
+This repository documents a validation test performed at the Organ Pipes National Park, which is a protected area located near Melbourne, Australia. The code used for this validation shows how it is possible to use a slightly modified version of the base code, and off-the-shelf components (documented below) to stop a vehicle entering a protected zone.
 
-Download the latest WDPA Dataset shapefile (.shp) from https://www.protectedplanet.net/. Inside this archive you will find a number of files. Locate `WDPA_MONYEAR-shapefile-polygons.shp` and `WDPA_MONYEAR-shapefile-polygons.shx` (eg `WDPA_Aug2019-shapefile-polygons.shp` and `WDPA_Aug2019-shapefile-polygons.shx`) as save them in the root of this repo.
+## Process
 
-Open `CodeOfConscience.py` and edit the `shapefile` variable to reflect the name of the .shp file you have just downloaded eg:
-```python
-shapefile = "WDPA_Aug2019-shapefile-polygons.shp"
-```
+This test uses a soft shut-down approach, first warning the driver before initiating a shutdown at a later time (in this instance, 5 minutes).
 
-Set the `machineLocation` (Longitude, Latitude) to a location you'd like to check
-```python
-machineLocation = Point(175.8704514016789, -37.73493520423763)
-```
+The sequence is as follows:
 
-Run the tool to check the location
-```sh
-python3 CodeOfConscience.py
-```
+1. The Code of Conscience code constantly checks the current location and compares it to the protected area database
+2. The vehicle enters a protected area
+3. The driver is sent a warning SMS that a protected area has been entered, giving them time to retreat
+4. If the driver does not retreat within 5 minutes, the engine will be shut down
 
 ## Validation Kit
-An off-the-shelf validation kit to run the Code of Conscience Python code could be constructed using the following:
+An off-the-shelf validation kit to run the Code of Conscience Python code was constructed using the following:
 
 1. Raspberry Pi Model 3+ or Model 4: https://www.adafruit.com/product/3775
 2. SixFab Raspberry Pi Hat: https://sixfab.com/product/raspberry-pi-cellular-iot-application-hat/
-3. (Optional) Weatherproof case: https://sixfab.com/product/raspberry-pi-ip65-weatherproof-iot-project-enclosure/
-4. (Optional) The kit includes an antenna for the GPS and LTE Cellular but you can purchase more here: https://sixfab.com/product/lte-gnss-dual-u-fl-antenna/
-5. (Optional) You are likely to require a DCDC converter to step the power down if you don’t have a 5V USB port available: https://www.tindie.com/products/omzlo/pi-jack-power-your-raspberry-pi-from-6v-to-28v/
+3. Weatherproof case: https://sixfab.com/product/raspberry-pi-ip65-weatherproof-iot-project-enclosure/
 
 Details of the Code of Conscience hardware architecture can be found [here](hardware/CodeofConscienceValidationHardwareArchitecture.png), and the SixFab hat schematic can be found [here](hardware/Sixfab_RPi_CellularIoT_App_Hat_Schematic.PDF).
+
+## Validation Schematic
+We tested the vehical shutdown by wiring a high-current, normally-closed automotive relay into the fuel pump circuit of our test vehicle (an SUV). When the code detects that the vehicle is in a protected area, it fires the relay. This action cuts power to the fuel pump and ultimately stops the vehicle.
+
+![alt Car wiring schematic](schematic/validation-car-wiring-schematic.jpg "Car wiring schematic")
+
+## Afterword
+All of the hardware we've used in our POC is readily accessible to anyone. AKQA are working closely with our partner Tekt Industries to develop V2 of a low cost bespoke version of the hardware and code.
+
+Lastly, this project is more than the code and the parts that run it. It's a big idea that requires the will of companies, organisations, governments or people of the planet to help implement and scale it.
+
+*Technology is just the expression of other interests* - Shoshana Zuboff
