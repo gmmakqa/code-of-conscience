@@ -15,6 +15,8 @@ Find out more at https://www.codeofconscience.org/
 
 This repository documents a validation test performed at the Organ Pipes National Park, which is a protected area located near Melbourne, Australia. The code used for this validation shows how it is possible to use a slightly modified version of the base code, and off-the-shelf components (documented below) to stop a vehicle entering a protected zone.
 
+![alt Organ Pipes](images/organ-pipes.png "Organ Pipes")
+
 ## Process
 
 This test uses a soft shut-down approach, first warning the driver before initiating a shutdown at a later time (in this instance, 5 minutes).
@@ -39,7 +41,7 @@ Details of the Code of Conscience hardware architecture can be found [here](hard
 ## Validation Schematic
 We tested the vehical shutdown by wiring a high-current, normally-closed automotive relay into the fuel pump circuit of our test vehicle (an SUV). When the code detects that the vehicle is in a protected area, it fires the relay. This action cuts power to the fuel pump and ultimately stops the vehicle safely, keeping all other electronics operational.
 
-![alt Car wiring schematic](schematic/validation-car-wiring-schematic.jpg "Car wiring schematic")
+![alt Car wiring schematic](images/validation-car-wiring-schematic.jpg "Car wiring schematic")
 
 ## Next Steps
 All of the hardware we've used in this POC is readily accessible to anyone. AKQA are working closely with our partner Tekt Industries to develop V2 of a low cost bespoke version of the hardware and code to be embedded in machines without existing telematics.
