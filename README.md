@@ -44,7 +44,7 @@ We tested the vehical shutdown by wiring a high-current, normally-closed automot
 ![alt Car wiring schematic](images/validation-car-wiring-schematic.jpg "Car wiring schematic")
 
 ## Next Steps
-All of the hardware we've used in this POC is readily accessible to anyone. AKQA are working closely with our partner Tekt Industries to develop V2 of a low cost bespoke version of the hardware and code to be embedded in machines without existing telematics.
+All of the hardware we've used in this POC is readily accessible to anyone.
 
 Lastly, this project is more than the code and the parts that run it. It's a big idea that requires the will of companies, organisations, governments or people of the planet to help implement and scale it.
 
